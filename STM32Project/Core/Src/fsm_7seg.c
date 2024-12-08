@@ -7,6 +7,7 @@
 #include "fsm_7seg.h"
 #include "main.h"
 #include "software_timer.h"
+#include "control_7seg.h"
 
 int countDownA;
 int countDownB;

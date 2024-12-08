@@ -74,6 +74,7 @@ void display7SEGA(int index) {
 	}
 
 }
+
 void display7SEGB(int index) {
 
 
@@ -131,6 +132,7 @@ void display7SEGB(int index) {
 	}
 
 }
+
 void update_indexA(int index) {
 	if (index >= 10) {
 		buffer_indexA[0] = index % 10;
@@ -150,36 +152,56 @@ void update_indexB(int index) {
 		buffer_indexB[1] = 0;
 	}
 }
+
+int temp = 0;  // Khởi tạo biến temp
+
 void update_7seg_A() {
-	switch (switch_7seg) {
-	case 1:
-		display7SEGA(buffer_indexA[1]);
-		HAL_GPIO_WritePin(GPIOA, PA11_Pin, RESET);
-		HAL_GPIO_WritePin(GPIOA, PA12_Pin, SET);
-		break;
-	case 2:
-		display7SEGA(buffer_indexA[0]);
-		HAL_GPIO_WritePin(GPIOA, PA11_Pin, SET);
-		HAL_GPIO_WritePin(GPIOA, PA12_Pin, RESET);
-		break;
-	default:
-		break;
-	}
+    // Tăng giá trị temp mỗi lần gọi hàm
+    if (temp >= 2) {
+        temp = 0;  // Nếu temp đạt giá trị 2, reset về 0
+    }
+    temp++;  // Tăng giá trị lên
+
+
+    // Hiển thị trên LED 7-segment nhóm A
+    switch (temp) {
+    case 1:
+        display7SEGA(buffer_indexA[1]);  // Hiển thị giá trị của buffer_indexA[1]
+        HAL_GPIO_WritePin(GPIOA, PA11_Pin, RESET);  // Tắt LED A
+        HAL_GPIO_WritePin(GPIOA, PA12_Pin, SET);    // Bật LED A
+        break;
+    case 2:
+        display7SEGA(buffer_indexA[0]);  // Hiển thị giá trị của buffer_indexA[0]
+        HAL_GPIO_WritePin(GPIOA, PA11_Pin, SET);    // Bật LED A
+        HAL_GPIO_WritePin(GPIOA, PA12_Pin, RESET);  // Tắt LED A
+        break;
+    default:
+        break;
+    }
 }
+
 void update_7seg_B() {
-	switch (switch_7seg) {
-	case 1:
-		display7SEGB(buffer_indexB[1]);
-		HAL_GPIO_WritePin(GPIOA, PA13_Pin, RESET);
-		HAL_GPIO_WritePin(GPIOA, PA14_Pin, SET);
-		break;
-	case 2:
-		display7SEGB(buffer_indexB[0]);
-		HAL_GPIO_WritePin(GPIOA, PA13_Pin, SET);
-		HAL_GPIO_WritePin(GPIOA, PA14_Pin, RESET);
-		break;
-	default:
-		break;
-	}
+    // Tăng giá trị temp mỗi lần gọi hàm
+    if (temp >= 2) {
+        temp = 0;  // Nếu temp đạt giá trị 2, reset về 0
+    }
+    temp++;  // Tăng giá trị lên
+
+
+    // Hiển thị trên LED 7-segment nhóm B
+    switch (temp) {
+    case 1:
+        display7SEGB(buffer_indexB[1]);  // Hiển thị giá trị của buffer_indexB[1]
+        HAL_GPIO_WritePin(GPIOA, PA13_Pin, RESET);  // Tắt LED B
+        HAL_GPIO_WritePin(GPIOA, PA14_Pin, SET);    // Bật LED B
+        break;
+    case 2:
+        display7SEGB(buffer_indexB[0]);  // Hiển thị giá trị của buffer_indexB[0]
+        HAL_GPIO_WritePin(GPIOA, PA13_Pin, SET);    // Bật LED B
+        HAL_GPIO_WritePin(GPIOA, PA14_Pin, RESET);  // Tắt LED B
+        break;
+    default:
+        break;
+    }
 }
 

@@ -15,6 +15,7 @@ int status_RED_B = 0;
 int status_GREEN_B = 1;
 int status_YELLOW_B = 0;
 
+
 void displayTraffic() {
 	//group a
 	if (status_RED_A == 1) {
