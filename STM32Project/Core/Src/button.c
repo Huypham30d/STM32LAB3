@@ -1,53 +1,78 @@
 /*
- * button.c
+ * MODE_BUTTON.c
  *
- *  Created on: Dec 3, 2024
+ *  Created on: Oct 29, 2024
  *      Author: Admin
  */
-#include "main.h"
 #include "button.h"
 
-int keyReg0[3] = {NORMAL_STATE};
-int keyReg1[3] = {NORMAL_STATE};
-int keyReg2[3] = {NORMAL_STATE};
-int keyReg3[3] = {NORMAL_STATE};
+int KeyReg0[5] = {NORMAL_STATE,NORMAL_STATE,NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int KeyReg1[5] = {NORMAL_STATE,NORMAL_STATE,NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int KeyReg2[5] = {NORMAL_STATE,NORMAL_STATE,NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
 
-int Time = 200;
-int ButtonFlag[3] = {0};
+int KeyReg3[5] = {NORMAL_STATE,NORMAL_STATE,NORMAL_STATE,NORMAL_STATE,NORMAL_STATE};
+int TimerForKeyPress[5] = {300,300,300,300,300};
 
-int IsModeButtonPressed(int idx){
-	if (ButtonFlag[idx] == 1){
-		ButtonFlag[idx] = 0;
+int button_flag[5];
+int button_LongPress_flag[5];
+
+int isButtonPress(int index) {
+	if (button_flag[index] == 1) {
+		button_flag[index] = 0;
 		return 1;
 	}
 	return 0;
 }
 
-void MODEProcess(int cnt){
-	ButtonFlag[cnt] = 1;
+
+void subKeyProcess(int index) {
+	button_flag[index] = 1;
 }
-void getKeyInput1(){
-	for (int i =0; i<3; i++){
-		keyReg0[i] = keyReg1[i];
-		keyReg1[i] = keyReg2[i];
-		keyReg2[i] = (i == 0)? HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7):
-					 (i == 1)? HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8):
-					 HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9);
-		if ((keyReg0[i] == keyReg1[i]) && (keyReg1[i] == keyReg2[i])){
-			if (keyReg3[i] != keyReg2[i]){
-				keyReg3[i] = keyReg2[i];
-				if (keyReg2[i] == PRESSED_STATE){
-					MODEProcess(i);
-					Time = 200;
+
+int getIndex(int index) {
+	switch(index){
+		case 0:
+			return HAL_GPIO_ReadPin(BUTTON0_GPIO_Port, BUTTON0_Pin);
+			break;
+		case 1:
+			return HAL_GPIO_ReadPin(BUTTON1_GPIO_Port, BUTTON1_Pin);
+			break;
+		case 2:
+			return HAL_GPIO_ReadPin(BUTTON2_GPIO_Port, BUTTON2_Pin);
+			break;
+		case 3:
+			return HAL_GPIO_ReadPin(BUTTON3_GPIO_Port, BUTTON3_Pin);
+			break;
+		default:
+			break;
+	}
+	return 0;
+}
+
+void getKeyInput() {
+	for (int i = 0; i < 5; i++) {
+		KeyReg0[i] = KeyReg1[i];
+		KeyReg1[i] = KeyReg2[i];
+
+		KeyReg2[i] = getIndex(i) ;
+
+		if ((KeyReg0[i] == KeyReg1[i]) && (KeyReg1[i] == KeyReg2[i])) {
+			if (KeyReg3[i] != KeyReg2[i]) {
+				KeyReg3[i] = KeyReg2[i];
+				if (KeyReg2[i] == PRESS_STATE) {
+					//todo
+					subKeyProcess(i);
+					TimerForKeyPress[i] = 300;
+
 				}
-			}
-			else{
-				Time--;
-				if (Time == 0){
-					keyReg3[i] = NORMAL_STATE;
+			} else {
+				TimerForKeyPress[i]--;
+				if (TimerForKeyPress[i] == 0) {
+					//todo
+					KeyReg3[i] = NORMAL_STATE;
 				}
 			}
 		}
-
 	}
 }
+

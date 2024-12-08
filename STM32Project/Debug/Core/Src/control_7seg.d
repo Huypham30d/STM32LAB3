@@ -1,5 +1,6 @@
-Core/Src/fsm_auto.o: ../Core/Src/fsm_auto.c ../Core/Inc/fsm_auto.h \
- ../Core/Inc/main.h ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
+Core/Src/control_7seg.o: ../Core/Src/control_7seg.c \
+ ../Core/Inc/control_7seg.h ../Core/Inc/main.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h \
@@ -23,10 +24,10 @@ Core/Src/fsm_auto.o: ../Core/Src/fsm_auto.c ../Core/Inc/fsm_auto.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Core/Inc/global.h ../Core/Inc/traffic_light.h ../Core/Inc/button.h \
- ../Core/Inc/led7_segment.h ../Core/Inc/software_timer.h
+ ../Core/Inc/timer_check.h ../Core/Inc/main.h \
+ ../Core/Inc/software_timer.h
 
-../Core/Inc/fsm_auto.h:
+../Core/Inc/control_7seg.h:
 
 ../Core/Inc/main.h:
 
@@ -78,12 +79,8 @@ Core/Src/fsm_auto.o: ../Core/Src/fsm_auto.c ../Core/Inc/fsm_auto.h \
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 
-../Core/Inc/global.h:
+../Core/Inc/timer_check.h:
 
-../Core/Inc/traffic_light.h:
-
-../Core/Inc/button.h:
-
-../Core/Inc/led7_segment.h:
+../Core/Inc/main.h:
 
 ../Core/Inc/software_timer.h:

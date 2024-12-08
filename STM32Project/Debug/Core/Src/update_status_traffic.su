@@ -1,0 +1,2 @@
+update_status_traffic.c:18:6:status_LED_A	4	static
+update_status_traffic.c:55:6:status_LED_B	4	static

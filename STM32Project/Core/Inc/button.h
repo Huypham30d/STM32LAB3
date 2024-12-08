@@ -11,9 +11,13 @@
 #include "main.h"
 
 #define NORMAL_STATE GPIO_PIN_SET
-#define PRESSED_STATE GPIO_PIN_RESET
+#define PRESS_STATE GPIO_PIN_RESET
 
-int IsModeButtonPressed();
-void getKeyInput1();
+extern int button_flag[5];
+extern int isButtonPress (int index);
+extern void subKeyProcess(int index);
+int getIndex(int index);
+
+extern void getKeyInput();
 
 #endif /* INC_BUTTON_H_ */

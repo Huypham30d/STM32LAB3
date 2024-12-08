@@ -6,10 +6,13 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Core/Src/button.c \
-../Core/Src/fsm_auto.c \
-../Core/Src/fsm_man.c \
+../Core/Src/control_7seg.c \
+../Core/Src/control_traffic.c \
+../Core/Src/fsm_7seg.c \
+../Core/Src/fsm_automatic.c \
+../Core/Src/fsm_manual.c \
+../Core/Src/fsm_setting.c \
 ../Core/Src/global.c \
-../Core/Src/led7_segment.c \
 ../Core/Src/main.c \
 ../Core/Src/software_timer.c \
 ../Core/Src/stm32f1xx_hal_msp.c \
@@ -17,14 +20,18 @@ C_SRCS += \
 ../Core/Src/syscalls.c \
 ../Core/Src/sysmem.c \
 ../Core/Src/system_stm32f1xx.c \
-../Core/Src/traffic_light.c 
+../Core/Src/timer_check.c \
+../Core/Src/update_status_traffic.c 
 
 OBJS += \
 ./Core/Src/button.o \
-./Core/Src/fsm_auto.o \
-./Core/Src/fsm_man.o \
+./Core/Src/control_7seg.o \
+./Core/Src/control_traffic.o \
+./Core/Src/fsm_7seg.o \
+./Core/Src/fsm_automatic.o \
+./Core/Src/fsm_manual.o \
+./Core/Src/fsm_setting.o \
 ./Core/Src/global.o \
-./Core/Src/led7_segment.o \
 ./Core/Src/main.o \
 ./Core/Src/software_timer.o \
 ./Core/Src/stm32f1xx_hal_msp.o \
@@ -32,14 +39,18 @@ OBJS += \
 ./Core/Src/syscalls.o \
 ./Core/Src/sysmem.o \
 ./Core/Src/system_stm32f1xx.o \
-./Core/Src/traffic_light.o 
+./Core/Src/timer_check.o \
+./Core/Src/update_status_traffic.o 
 
 C_DEPS += \
 ./Core/Src/button.d \
-./Core/Src/fsm_auto.d \
-./Core/Src/fsm_man.d \
+./Core/Src/control_7seg.d \
+./Core/Src/control_traffic.d \
+./Core/Src/fsm_7seg.d \
+./Core/Src/fsm_automatic.d \
+./Core/Src/fsm_manual.d \
+./Core/Src/fsm_setting.d \
 ./Core/Src/global.d \
-./Core/Src/led7_segment.d \
 ./Core/Src/main.d \
 ./Core/Src/software_timer.d \
 ./Core/Src/stm32f1xx_hal_msp.d \
@@ -47,7 +58,8 @@ C_DEPS += \
 ./Core/Src/syscalls.d \
 ./Core/Src/sysmem.d \
 ./Core/Src/system_stm32f1xx.d \
-./Core/Src/traffic_light.d 
+./Core/Src/timer_check.d \
+./Core/Src/update_status_traffic.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
