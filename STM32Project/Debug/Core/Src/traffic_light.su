@@ -1,0 +1,9 @@
+traffic_light.c:9:6:displayRED1	8	static
+traffic_light.c:14:6:displayAMBER1	8	static
+traffic_light.c:19:6:displayGREEN1	8	static
+traffic_light.c:25:6:displayRED2	8	static
+traffic_light.c:30:6:displayAMBER2	8	static
+traffic_light.c:35:6:displayGREEN2	8	static
+traffic_light.c:41:6:BlinkRED	8	static
+traffic_light.c:49:6:BlinkAMBER	8	static
+traffic_light.c:57:6:BlinkGREEN	8	static
